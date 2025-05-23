@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERPACK Web Platform: Empowering Educators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .slide-header {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 1200px;
+        }
+
+        .main-title {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 300;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .platform-showcase {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 50px;
+            margin: 40px 0;
+            max-width: 1400px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: slideInScale 1s ease-out 0.4s both;
+        }
+
+        .laptop-container {
+            position: relative;
+            margin: 30px 0;
+            transform: perspective(1200px) rotateX(8deg) rotateY(-5deg);
+            filter: drop-shadow(0 30px 80px rgba(0,0,0,0.4));
+            transition: transform 0.6s ease;
+        }
+
+        .laptop-container:hover {
+            transform: perspective(1200px) rotateX(5deg) rotateY(-2deg) scale(1.02);
+        }
+
+        .laptop {
+            width: 1000px;
+            height: 650px;
+            background: linear-gradient(145deg, #e8e8e8, #ffffff);
+            border-radius: 20px;
+            position: relative;
+            border: 3px solid #d0d0d0;
+        }
+
+        .laptop::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 6px;
+            background: #999;
+            border-radius: 3px;
+        }
+
+        .screen {
+            width: 920px;
+            height: 580px;
+            background: #000;
+            border-radius: 12px;
+            position: absolute;
+            top: 35px;
+            left: 40px;
+            border: 2px solid #333;
+            overflow: hidden;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.2);
+        }
+
+        .screen-content {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8f0ff 100%);
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .dashboard-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+        }
+
+        .dashboard-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dashboard-title::before {
+            content: '🚀';
+            font-size: 2rem;
+            -webkit-text-fill-color: initial;
+        }
+
+        .widget-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .widget {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .widget:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .widget-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+            animation: pulse 2s infinite;
+        }
+
+        .widget-label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .functionalities-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            max-height: 520px;
+            overflow-y: auto;
+        }
+
+        .functionalities-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .functionalities-title::before {
+            content: '⚡';
+            font-size: 2rem;
+            -webkit-text-fill-color: initial;
+        }
+
+        .functionality-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .functionality-item:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+            transform: translateX(5px);
+        }
+
+        .functionality-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .functionality-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .functionality-content p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .keyboard {
+            position: absolute;
+            bottom: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 900px;
+            height: 45px;
+            background: linear-gradient(145deg, #e8e8e8, #ffffff);
+            border-radius: 0 0 18px 18px;
+            border: 2px solid #d0d0d0;
+            border-top: none;
+        }
+
+        .trackpad {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140px;
+            height: 90px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .benefits-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            width: 100%;
+            margin: 50px 0;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            animation: fadeInUp 0.8s ease-out calc(var(--i) * 0.1s) both;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .benefit-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .benefit-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.2;
+        }
+
+        .benefit-description {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .benefit-details {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.5;
+            font-style: italic;
+            padding: 15px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .conclusion-banner {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 40px 50px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 60px;
+            max-width: 1200px;
+            width: 100%;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .conclusion-text {
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 1.5;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .benefit-card:nth-child(1) { --i: 0; }
+        .benefit-card:nth-child(2) { --i: 1; }
+        .benefit-card:nth-child(3) { --i: 2; }
+        .benefit-card:nth-child(4) { --i: 3; }
+
+        @media (max-width: 1200px) {
+            .laptop {
+                width: 800px;
+                height: 520px;
+            }
+            
+            .screen {
+                width: 740px;
+                height: 460px;
+                top: 30px;
+                left: 30px;
+            }
+            
+            .keyboard {
+                width: 720px;
+                bottom: -40px;
+            }
+
+            .main-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .laptop {
+                width: 600px;
+                height: 400px;
+            }
+            
+            .screen {
+                width: 560px;
+                height: 340px;
+                top: 30px;
+                left: 20px;
+            }
+            
+            .screen-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .keyboard {
+                width: 540px;
+                bottom: -35px;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .benefits-container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .platform-showcase {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .laptop {
+                width: 500px;
+                height: 330px;
+            }
+            
+            .screen {
+                width: 470px;
+                height: 280px;
+                top: 25px;
+                left: 15px;
+            }
+            
+            .keyboard {
+                width: 450px;
+                bottom: -30px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .container {
+                padding: 20px 15px;
+            }
+
+            .platform-showcase {
+                padding: 20px;
+            }
+
+            .benefit-card {
+                padding: 25px;
+            }
+
+            .benefit-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .conclusion-banner {
+                padding: 30px;
+            }
+
+            .conclusion-text {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="slide-header">
+            <h1 class="main-title">CYBERPACK Web Platform</h1>
+            <p class="subtitle">Empowering Educators with Comprehensive STEAM Education Management</p>
+        </div>
+
+        <div class="platform-showcase">
+            <div class="laptop-container">
+                <div class="laptop">
+                    <div class="screen">
+                        <div class="screen-content">
+                            <div class="dashboard-section">
+                                <h2 class="dashboard-title">CYBERPACK Dashboard</h2>
+                                <div class="widget-grid">
+                                    <div class="widget">
+                                        <span class="widget-icon">📚</span>
+                                        <div class="widget-label">Curriculum<br>Library</div>
+                                    </div>
+                                    <div class="widget">
+                                        <span class="widget-icon">👥</span>
+                                        <div class="widget-label">My<br>Classes</div>
+                                    </div>
+                                    <div class="widget">
+                                        <span class="widget-icon">📊</span>
+                                        <div class="widget-label">Analytics<br>Dashboard</div>
+                                    </div>
+                                    <div class="widget">
+                                        <span class="widget-icon">🗂️</span>
+                                        <div class="widget-label">Resource<br>Hub</div>
+                                    </div>
+                                    <div class="widget">
+                                        <span class="widget-icon">💬</span>
+                                        <div class="widget-label">Communication</div>
+                                    </div>
+                                    <div class="widget">
+                                        <span class="widget-icon">🎓</span>
+                                        <div class="widget-label">Certification</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="functionalities-section">
+                                <h2 class="functionalities-title">Key Features</h2>
+                                
+                                <div class="functionality-item">
+                                    <div class="functionality-icon">📚</div>
+                                    <div class="functionality-content">
+                                        <h3>Full Curriculum Access</h3>
+                                        <p>Complete CYBERPACK curriculum with detailed lesson plans and methodological guides for all age groups.</p>
+                                    </div>
+                                </div>
+
+                                <div class="functionality-item">
+                                    <div class="functionality-icon">👥</div>
+                                    <div class="functionality-content">
+                                        <h3>Class Management</h3>
+                                        <p>Intuitive tools for organizing students, tracking attendance, and managing class schedules.</p>
+                                    </div>
+                                </div>
+
+                                <div class="functionality-item">
+                                    <div class="functionality-icon">📈</div>
+                                    <div class="functionality-content">
+                                        <h3>Progress Tracking</h3>
+                                        <p>Real-time student progress monitoring with comprehensive performance analytics.</p>
+                                    </div>
+                                </div>
+
+                                <div class="functionality-item">
+                                    <div class="functionality-icon">🗂️</div>
+                                    <div class="functionality-content">
+                                        <h3>Resource Library</h3>
+                                        <p>Rich collection of supplementary materials, FAQs, and troubleshooting guides.</p>
+                                    </div>
+                                </div>
+
+                                <div class="functionality-item">
+                                    <div class="functionality-icon">💬</div>
+                                    <div class="functionality-content">
+                                        <h3>Communication Tools</h3>
+                                        <p>Integrated features for seamless communication with students and parents.</p>
+                                    </div>
+                                </div>
+
+                                <div class="functionality-item">
+                                    <div class="functionality-icon">🎓</div>
+                                    <div class="functionality-content">
+                                        <h3>Teacher Certification</h3>
+                                        <p>Access to training programs and official CYBERPACK methodology certification.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="keyboard"></div>
+                    <div class="trackpad"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-container">
+            <div class="benefit-card">
+                <div class="benefit-header">
+                    <div class="benefit-icon">⚙️</div>
+                    <h3 class="benefit-title">Streamlined Management</h3>
+                </div>
+                <p class="benefit-description">Effortlessly manage classes, track student progress with real-time analytics, and organize all your CYBERPACK curriculum resources in one centralized hub.</p>
+                <p class="benefit-details">Save time and effort with centralized resources and management tools that simplify your workflow.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-header">
+                    <div class="benefit-icon">💡</div>
+                    <h3 class="benefit-title">Enriched Teaching & Support</h3>
+                </div>
+                <p class="benefit-description">Access a complete library of lesson plans, methodological guides, troubleshooting tips, and professional development modules to enhance your STEAM instruction.</p>
+                <p class="benefit-details">Comprehensive support to enhance teaching effectiveness and student outcomes.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-header">
+                    <div class="benefit-icon">💬</div>
+                    <h3 class="benefit-title">Effective Communication & Certification</h3>
+                </div>
+                <p class="benefit-description">Utilize integrated communication tools for students and parents, and access pathways for official CYBERPACK teacher training and certification.</p>
+                <p class="benefit-details">Grow professionally and master the CYBERPACK methodology through dedicated training programs.</p>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-header">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Your Dedicated Partner</h3>
+                </div>
+                <p class="benefit-description">The CYBERPACK Web Platform serves as your dedicated partner in delivering impactful STEAM education with complete methodological alignment.</p>
+                <p class="benefit-details">Monitor progress closely, tailor instruction effectively, and enhance student learning outcomes.</p>
+            </div>
+        </div>
+
+        <div class="conclusion-banner">
+            <p class="conclusion-text">This platform serves as a centralized hub for educators to streamline STEAM education delivery while maintaining full alignment with the CYBERPACK methodology.</p>
+        </div>
+    </div>
+</body>
+</html>
