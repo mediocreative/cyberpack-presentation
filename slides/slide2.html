@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEAM Club: Building Future Innovators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b69 100%);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .bg-circuit {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(45deg, transparent 49%, rgba(0, 255, 255, 0.05) 50%, transparent 51%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            33% { transform: translateX(10px) translateY(-10px); }
+            66% { transform: translateX(-5px) translateY(10px); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-size: 1.6rem;
+            color: #b8c5d6;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .olympic-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(255, 107, 53, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4); }
+        }
+
+        .olympic-icon {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            flex: 1;
+            margin-bottom: 40px;
+        }
+
+        .age-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 35px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .age-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .age-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-icon {
+            font-size: 3rem;
+            margin-right: 20px;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #b8c5d6;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+
+        .learning-areas {
+            margin-top: 20px;
+        }
+
+        .learning-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .learning-item:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .learning-icon {
+            color: #00ffff;
+            margin-right: 12px;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .learning-text {
+            flex: 1;
+        }
+
+        .learning-title {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 3px;
+        }
+
+        .learning-desc {
+            font-size: 0.9rem;
+            color: #b8c5d6;
+            line-height: 1.4;
+        }
+
+        .kit-section {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.1));
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kit-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .kit-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff6b35;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kit-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kit-feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .kit-feature:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 107, 53, 0.1);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .kit-feature-icon {
+            font-size: 2rem;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .kit-feature-text {
+            font-size: 0.95rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .kit-highlight {
+            color: #00ffff;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1200px) {
+            .slide-container { padding: 40px; }
+            .main-title { font-size: 3.2rem; }
+            .content-grid { gap: 30px; }
+            .age-section { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-circuit"></div>
+    
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="main-title">STEAM CLUB</h1>
+            <p class="subtitle">Extracurricular Excellence: Building Future Innovators</p>
+            <div class="olympic-badge">
+                <span class="olympic-icon">🏆</span>
+                "Olympic Reserve" Approach: Identifying & Nurturing STEAM Leaders
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="age-section">
+                <div class="section-header">
+                    <div class="section-icon">🌱</div>
+                    <div>
+                        <h2 class="section-title">AGES 10-13</h2>
+                        <p class="section-subtitle">Building the Foundation</p>
+                    </div>
+                </div>
+                
+                <div class="learning-areas">
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">3D Design</div>
+                            <div class="learning-desc">Introduction to Tinkercad & foundational Blender techniques</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Fundamental Electronics</div>
+                            <div class="learning-desc">Basic circuit design and component understanding</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Programming Fundamentals</div>
+                            <div class="learning-desc">Microcontroller basics and block-based coding</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Hands-on Projects</div>
+                            <div class="learning-desc">Students typically progress through project difficulty levels 1-3 based on pace and interest, building foundation through exploration and creative problem-solving</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="age-section">
+                <div class="section-header">
+                    <div class="section-icon">🚀</div>
+                    <div>
+                        <h2 class="section-title">AGES 14-18</h2>
+                        <p class="section-subtitle">Advanced Specialization</p>
+                    </div>
+                </div>
+                
+                <div class="learning-areas">
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Professional 3D Modeling</div>
+                            <div class="learning-desc">Advanced Blender techniques and complex design</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Embedded Systems & IoT</div>
+                            <div class="learning-desc">Advanced electronics and Internet of Things applications</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Specialized Technologies</div>
+                            <div class="learning-desc">Drone technology and complex engineering projects</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">High-Level Competition Prep</div>
+                            <div class="learning-desc">Students tackle levels 3-4+, customizing core projects for competitions. Includes "CYBERPACK Marathon" for comprehensive mastery</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="kit-section">
+            <h3 class="kit-title">CYBERPACK Advanced Kit Integration</h3>
+            <div class="kit-features">
+                <div class="kit-feature">
+                    <div class="kit-feature-icon">📦</div>
+                    <div class="kit-feature-text">
+                        <span class="kit-highlight">1 Advanced Kit</span><br>
+                        per STEAM Club subscription
+                    </div>
+                </div>
+                
+                <div class="kit-feature">
+                    <div class="kit-feature-icon">🎯</div>
+                    <div class="kit-feature-text">
+                        <span class="kit-highlight">32 Core Projects</span><br>
+                        spanning 4 difficulty levels
+                    </div>
+                </div>
+                
+                <div class="kit-feature">
+                    <div class="kit-feature-icon">👥</div>
+                    <div class="kit-feature-text">
+                        <span class="kit-highlight">Flexible Pacing</span><br>
+                        through project levels & deep specialization
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
