@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'slides/slide1.html',       // Path to your first slide
         'slides/slide2.html',       // Path to your second slide
         'slides/slide3.html',       // Path to your third slide
-        // 'slides/another_slide.html', // Example for adding more slides
+        'slides/slide4.html', // Example for adding more slides
         // 'slides/yet_another_slide.html'
     ];
     // --- END OF IMPORTANT SECTION ---
