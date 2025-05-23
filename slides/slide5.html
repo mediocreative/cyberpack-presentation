@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERPACK: Excelling in Competitions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .slide-container {
+            max-width: 1400px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #2a5298;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #555;
+            max-width: 90%;
+            margin: 0 auto 15px;
+        }
+
+        .proof-text {
+            font-size: 1rem;
+            color: #2a5298;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .competition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .competition-table th {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px 15px;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .competition-table td {
+            padding: 18px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            vertical-align: top;
+            line-height: 1.5;
+        }
+
+        .competition-table tr:hover {
+            background: rgba(30, 60, 114, 0.05);
+            transform: scale(1.01);
+            transition: all 0.3s ease;
+        }
+
+        .competition-name {
+            font-weight: 700;
+            color: #1e3c72;
+            font-size: 1.05rem;
+        }
+
+        .check-mark {
+            color: #28a745;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .qualification-text {
+            color: #2a5298;
+            font-weight: 600;
+        }
+
+        .success-proof {
+            color: #28a745;
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        .skills-section {
+            background: linear-gradient(135deg, rgba(30, 60, 114, 0.1) 0%, rgba(42, 82, 152, 0.1) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .skills-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1e3c72;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-weight: 600;
+            color: #2a5298;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .conclusion {
+            text-align: center;
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .trophy-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 20px;
+            }
+            
+            .main-title {
+                font-size: 1.8rem;
+            }
+            
+            .competition-table th,
+            .competition-table td {
+                padding: 12px 8px;
+                font-size: 0.9rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="main-title">
+                <span class="trophy-icon">🏆</span>
+                Excelling in Competitions: CYBERPACK Prepares Winners
+            </h1>
+            <p class="subtitle">Your Launchpad for Competition Success</p>
+            <p class="intro-text">
+                CYBERPACK develops core STEAM skills and provides robust project experience for prestigious national and international science and robotics competitions.
+            </p>
+            <p class="proof-text">
+                Teams have successfully utilized CYBERPACK kits in competitive events.
+            </p>
+        </div>
+
+        <table class="competition-table">
+            <thead>
+                <tr>
+                    <th>Competition</th>
+                    <th>Key Skills</th>
+                    <th>CYBERPACK Focus</th>
+                    <th>Qualification</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="competition-name">World Robot Olympiad (WRO)</td>
+                    <td>Robot Building, Programming, Problem Solving</td>
+                    <td>Robotics & programming for Open, Future Innovators, & RoboMission categories.</td>
+                    <td>
+                        <span class="check-mark">✅</span>
+                        <span class="qualification-text">Suitable for WRO Open, Future Innovators, & most RoboMission.</span>
+                        <div class="success-proof">Teams have successfully used CYBERPACK kits.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="competition-name">FIRST LEGO League (FLL)</td>
+                    <td>Research, Innovation, Prototyping</td>
+                    <td>Platform for developing FLL Innovation Project solutions.</td>
+                    <td>
+                        <span class="check-mark">✅</span>
+                        <span class="qualification-text">Excellent for FLL Innovation Project.</span>
+                        <div class="success-proof">Teams have successfully used CYBERPACK kits.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="competition-name">NASA Space Apps Challenge</td>
+                    <td>Engineering, Prototyping, Software Development</td>
+                    <td>Rapid prototyping for diverse space-related challenges.</td>
+                    <td>
+                        <span class="check-mark">✅</span>
+                        <span class="qualification-text">Highly suitable for NASA Space Apps Challenge.</span>
+                        <div class="success-proof">CYBERPACK is a popular choice. Teams have used successfully.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="competition-name">Science & Engineering Fairs</td>
+                    <td>Scientific Method, Engineering Design, Data Analysis</td>
+                    <td>Versatile platform for interactive experiments and design projects.</td>
+                    <td>
+                        <span class="check-mark">✅</span>
+                        <span class="qualification-text">Excellent platform for Science Projects & Engineering Fairs.</span>
+                        <div class="success-proof"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="competition-name">QCRC</td>
+                    <td>Electronics, Programming, 3D Design, Robotics</td>
+                    <td>Purpose-built curriculum and kits for this championship.</td>
+                    <td>
+                        <span class="check-mark">✅</span>
+                        <span class="qualification-text">Specifically designed as the foundational platform for QCRC.</span>
+                        <div class="success-proof"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="competition-name">RoboCupJunior & Regional Competitions</td>
+                    <td>Autonomous Robotics, Programming</td>
+                    <td>Flexible platform for educational robotics challenges.</td>
+                    <td>
+                        <span class="check-mark">✅</span>
+                        <span class="qualification-text">Suitable for RoboCupJunior & educational competitions.</span>
+                        <div class="success-proof"></div>
+                    </td>
+                </tr>
+                <tr style="opacity: 0.7;">
+                    <td class="competition-name">FIRST Tech Challenge / FIRST Robotics Competition</td>
+                    <td>Advanced Robotics, Specific Control Systems</td>
+                    <td>Custom sensors/auxiliary functions (advanced use only).</td>
+                    <td>
+                        <span style="color: #ff9800; font-size: 1.3rem; font-weight: bold; margin-right: 8px;">⚠️</span>
+                        <span class="qualification-text">Not eligible as primary controller.</span>
+                        <div class="success-proof">Advanced custom subsystems only.</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="skills-section">
+            <h3 class="skills-title">CYBERPACK Core Skills Developed for Competition</h3>
+            <div class="skills-grid">
+                <div class="skill-item">Electronics Design & Implementation</div>
+                <div class="skill-item">Advanced Programming & Algorithmic Thinking</div>
+                <div class="skill-item">Mechanical Design & 3D Modeling</div>
+                <div class="skill-item">Robotics & System Integration</div>
+                <div class="skill-item">Critical Thinking & Problem Solving</div>
+                <div class="skill-item">Teamwork & Collaboration</div>
+            </div>
+        </div>
+
+        <div class="conclusion">
+            <span class="trophy-icon">🌟</span>
+            With CYBERPACK, students are not just learning STEAM; they are preparing to become champions and innovators on the global stage.
+            <span class="trophy-icon">🌟</span>
+        </div>
+    </div>
+</body>
+</html>
