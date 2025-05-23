@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEAM Club: Building Future Innovators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #2d1b69 100%);
+            color: white;
+            min-height: 100vh;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slide-container {
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .bg-circuit {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(45deg, transparent 49%, rgba(0, 255, 255, 0.05) 50%, transparent 51%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            33% { transform: translateX(10px) translateY(-10px); }
+            66% { transform: translateX(-5px) translateY(10px); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, #00ffff, #ff00ff, #ffff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            animation: glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: brightness(1); }
+            to { filter: brightness(1.2); }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.6rem);
+            color: #b8c5d6;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .olympic-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            animation: pulse 2s infinite;
+            max-width: 90%;
+            text-align: center;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 12px 35px rgba(255, 107, 53, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4); }
+        }
+
+        .olympic-icon {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .age-section {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .age-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .age-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-icon {
+            font-size: 3rem;
+            margin-right: 20px;
+            background: linear-gradient(135deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #b8c5d6;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+
+        .learning-areas {
+            margin-top: 20px;
+        }
+
+        .learning-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .learning-item:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateX(5px);
+        }
+
+        .learning-icon {
+            color: #00ffff;
+            margin-right: 12px;
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
+
+        .learning-text {
+            flex: 1;
+        }
+
+        .learning-title {
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 3px;
+        }
+
+        .learning-desc {
+            font-size: 0.9rem;
+            color: #b8c5d6;
+            line-height: 1.4;
+        }
+
+        .kit-section {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 30, 0.1));
+            border: 1px solid rgba(255, 107, 53, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kit-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 53, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .kit-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ff6b35;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kit-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .kit-feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .kit-feature:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 107, 53, 0.1);
+            border-color: rgba(255, 107, 53, 0.3);
+        }
+
+        .kit-feature-icon {
+            font-size: 2rem;
+            color: #ff6b35;
+            margin-bottom: 10px;
+        }
+
+        .kit-feature-text {
+            font-size: 0.95rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .kit-highlight {
+            color: #00ffff;
+            font-weight: 700;
+        }
+
+        .modular-learning {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(0, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+
+        .modular-text {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            color: #00ffff;
+            font-weight: 700;
+        }
+
+        @media (max-width: 1200px) {
+            .slide-container { padding: 30px 15px; }
+            .main-title { font-size: 3.2rem; }
+            .content-grid { gap: 25px; }
+            .age-section { padding: 20px; }
+        }
+
+        @media (max-width: 768px) {
+            .content-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px; 
+            }
+            .kit-features { 
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            .olympic-badge {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            .section-icon {
+                font-size: 2.5rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-circuit"></div>
+    
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="main-title">STEAM CLUB</h1>
+            <p class="subtitle">Extracurricular Excellence: Building Future Innovators</p>
+            <div class="olympic-badge">
+                <span class="olympic-icon">🏆</span>
+                "Olympic Reserve" Approach: Identifying & Nurturing STEAM Leaders
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="age-section">
+                <div class="section-header">
+                    <div class="section-icon">🌱</div>
+                    <div>
+                        <h2 class="section-title">AGES 10-13: FOUNDATION & EXPLORATION</h2>
+                        <p class="section-subtitle">Building core competencies, hands-on skills, and introducing competitive elements</p>
+                    </div>
+                </div>
+                
+                <div class="learning-areas">
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Module 1: 3D Design & Prototyping</div>
+                            <div class="learning-desc">Digital modeling, 3D printing, and design thinking fundamentals</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Module 2: Electronics & Programming</div>
+                            <div class="learning-desc">Circuit design, Arduino programming, and sensor integration</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Module 3: Robotics & Automation</div>
+                            <div class="learning-desc">CYBERPACK projects focusing on system integration and smart devices</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🎯</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Learning Progression</div>
+                            <div class="learning-desc">Students engage with <strong>CYBERPACK projects (Levels 1 & 2)</strong>, focusing on understanding core principles, customization, and applying them in mini-competitions and "Olympic Focus" tasks</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="age-section">
+                <div class="section-header">
+                    <div class="section-icon">🚀</div>
+                    <div>
+                        <h2 class="section-title">AGES 14-18: ADVANCED SPECIALIZATION & INNOVATION</h2>
+                        <p class="section-subtitle">Deepening expertise in advanced STEAM fields, independent research, complex project development, and high-level competition</p>
+                    </div>
+                </div>
+                
+                <div class="learning-areas">
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Module 1: Advanced 3D Modeling & Manufacturing</div>
+                            <div class="learning-desc">Professional CAD, parametric design, and engineering analysis</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Module 2: Embedded Systems & IoT</div>
+                            <div class="learning-desc">Advanced microcontrollers, IoT networks, and PCB design</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🔹</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Module 3: AI Robotics & Autonomous Systems</div>
+                            <div class="learning-desc">Advanced CYBERPACK projects with AI, computer vision, and autonomous control</div>
+                        </div>
+                    </div>
+                    
+                    <div class="learning-item">
+                        <div class="learning-icon">🎯</div>
+                        <div class="learning-text">
+                            <div class="learning-title">Learning Progression</div>
+                            <div class="learning-desc">Students work with <strong>CYBERPACK projects (Levels 3 & 4)</strong> as a base for innovation, research, and developing complex, integrated systems for high-stakes competitions (WRO, FIRST, RoboCup, QCRC)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modular-learning">
+            <div class="modular-text">
+                📚 <strong>Modular Learning: 3-month thematic modules (12 weeks each)</strong>
+            </div>
+        </div>
+
+        <div class="kit-section">
+            <h3 class="kit-title">CYBERPACK Advanced Kit Integration</h3>
+            <div class="kit-features">
+                <div class="kit-feature">
+                    <div class="kit-feature-icon">📦</div>
+                    <div class="kit-feature-text">
+                        <span class="kit-highlight">1 Advanced Kit</span><br>
+                        per STEAM Club subscription
+                    </div>
+                </div>
+                
+                <div class="kit-feature">
+                    <div class="kit-feature-icon">🎯</div>
+                    <div class="kit-feature-text">
+                        <span class="kit-highlight">32 Projects</span><br>
+                        for comprehensive exploration
+                    </div>
+                </div>
+                
+                <div class="kit-feature">
+                    <div class="kit-feature-icon">👥</div>
+                    <div class="kit-feature-text">
+                        <span class="kit-highlight">6-12 Students</span><br>
+                        optimal group size per kit
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 25px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <div class="kit-feature-text" style="color: #ffff00; font-weight: 600; font-size: 1.1rem;">
+                    🏆 <strong>Culmination for Both Age Groups:</strong><br>
+                    Participation in National/International Science & Engineering Fairs and Olympiads
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
