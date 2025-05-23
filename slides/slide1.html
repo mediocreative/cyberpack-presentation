@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STEAM Subject Overview</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .slide {
+            background: white;
+            width: 100%;
+            max-width: 1400px;
+            height: 900px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            padding: 50px 50px 80px 50px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: visible;
+        }
+        
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .headline {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            color: #4299e1;
+            font-weight: 500;
+        }
+        
+        .system-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .badge {
+            background: #2d3748;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+        
+        .content-text {
+            background: rgba(102, 126, 234, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .content-text p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+        }
+        
+        .content-text p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .timeline-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #f8fafc;
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .timeline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4299e1, #48bb78, #ed8936, #e53e3e, #9f7aea, #38b2ac, #4a5568, #dd6b20);
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+        
+        .grade-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9em;
+            position: relative;
+            z-index: 2;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .grade-5 { background: #4299e1; }
+        .grade-6 { background: #48bb78; }
+        .grade-7 { background: #ed8936; }
+        .grade-8 { background: #e53e3e; }
+        .grade-9 { background: #9f7aea; }
+        .grade-10 { background: #38b2ac; }
+        .grade-11 { background: #4a5568; }
+        .grade-12 { background: #dd6b20; }
+        
+        .grade-details {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .grade-column {
+            flex: 1;
+            padding: 0 10px;
+            text-align: center;
+        }
+        
+        .age-range {
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+        
+        .topics {
+            font-size: 0.8em;
+            color: #4a5568;
+            line-height: 1.3;
+        }
+        
+        .topic-item {
+            margin-bottom: 3px;
+        }
+        
+        .skills-section {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        
+        .skills-title {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+        
+        .skills-icons {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .skill-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .skill-3d { background: #4299e1; }
+        .skill-electronics { background: #48bb78; }
+        .skill-programming { background: #ed8936; }
+        .skill-robotics { background: #e53e3e; }
+        .skill-steam { background: #9f7aea; }
+        .skill-drones { background: #38b2ac; }
+        .skill-research { background: #4a5568; }
+        .skill-startup { background: #dd6b20; }
+        
+        .skill-label {
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #2d3748;
+        }
+        
+        .conclusion {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 1200px) {
+            .slide {
+                height: auto;
+                min-height: 900px;
+                padding: 40px 40px 70px 40px;
+            }
+            
+            .headline {
+                font-size: 2em;
+            }
+            
+            .grade-circle {
+                width: 70px;
+                height: 70px;
+                font-size: 0.8em;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .timeline {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .grade-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .skills-icons {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <h1 class="headline">STEAM Subject Overview</h1>
+            <p class="subtitle">A Comprehensive STEAM Education Journey (Ages 10-18)</p>
+            <div class="system-badges">
+                <span class="badge">British System: Years 6-13</span>
+                <span class="badge">American System: Grades 5-12</span>
+            </div>
+        </div>
+        
+        <div class="content-text">
+            <p>Our STEAM Subject curriculum provides a structured, year-by-year progression, guiding students from foundational concepts to advanced applications.</p>
+            <p>Spanning Years 6-13 / Grades 5-12 (Ages 10-18), the program develops a comprehensive set of skills across key technology domains.</p>
+            <p>Each stage builds upon the last, culminating in capstone projects and real-world problem-solving.</p>
+        </div>
+        
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="grade-circle grade-5">
+                    <div>Year 6</div>
+                    <div>Grade 5</div>
+                </div>
+                <div class="grade-circle grade-6">
+                    <div>Year 7</div>
+                    <div>Grade 6</div>
+                </div>
+                <div class="grade-circle grade-7">
+                    <div>Year 8</div>
+                    <div>Grade 7</div>
+                </div>
+                <div class="grade-circle grade-8">
+                    <div>Year 9</div>
+                    <div>Grade 8</div>
+                </div>
+                <div class="grade-circle grade-9">
+                    <div>Year 10</div>
+                    <div>Grade 9</div>
+                </div>
+                <div class="grade-circle grade-10">
+                    <div>Year 11</div>
+                    <div>Grade 10</div>
+                </div>
+                <div class="grade-circle grade-11">
+                    <div>Year 12</div>
+                    <div>Grade 11</div>
+                </div>
+                <div class="grade-circle grade-12">
+                    <div>Year 13</div>
+                    <div>Grade 12</div>
+                </div>
+            </div>
+            
+            <div class="grade-details">
+                <div class="grade-column">
+                    <div class="age-range">(Age 10-11)</div>
+                    <div class="topics">
+                        <div class="topic-item">🔹 Intro to Tinkercad</div>
+                        <div class="topic-item">🔹 Basic electronics</div>
+                        <div class="topic-item">🔹 Microcontroller basics</div>
+                        <div class="topic-item">🔹 3D pen introduction</div>
+                    </div>
+                </div>
+                
+                <div class="grade-column">
+                    <div class="age-range">(Age 11-12)</div>
+                    <div class="topics">
+                        <div class="topic-item">🔹 Transition to Blender</div>
+                        <div class="topic-item">🔹 Advanced electronics</div>
+                        <div class="topic-item">🔹 Introduction to soldering</div>
+                        <div class="topic-item">🔹 CYBERPACK projects</div>
+                    </div>
+                </div>
+                
+                <div class="grade-column">
+                    <div class="age-range">(Age 12-13)</div>
+                    <div class="topics">
+                        <div class="topic-item">🔹 ESP32 sensors & data</div>
+                        <div class="topic-item">🔹 Data visualization</div>
+                        <div class="topic-item">🔹 Science-oriented projects</div>
+                        <div class="topic-item">🔹 Research experiments</div>
+                    </div>
+                </div>
+                
+                <div class="grade-column">
+                    <div class="age-range">(Age 13-14)</div>
+                    <div class="topics">
+                        <div class="topic-item">🔹 Expert projects</div>
+                        <div class="topic-item">🔹 IoT fundamentals</div>
+                        <div class="topic-item">🔹 Advanced Blender</div>
+                        <div class="topic-item">🔹 Smart home elements</div>
+                    </div>
+                </div>
+                
+                <div class="grade-column">
+                    <div class="age-range">(Age 14-15)</div>
+                    <div class="topics">
+                        <div class="topic-item">🔹 CYBERPACK Marathon</div>
+                        <div class="topic-item">🔹 AI 32 projects</div>
+                        <div class="topic-item">🔹 System enhancement</div>
+                        <div class="topic-item">🔹 Project optimization</div>
+                    </div>
+                </div>
+                
+                <div class="grade-column">
+                    <div class="age-range">(Age 15-16)</div>
+                    <div class="topics">
+                        <div class="topic-item">🔹 Drone theory</div>
+                        <div class="topic-item">🔹 Drone assembly</div>
+                        <div class="topic-item">🔹 Flight training</div>
+                        <div class="topic-item">🔹 Flight missions</div>
+                    </div>
+                </div>
+                
+                <div class="grade-column">
+                    <div class="age-range">(Age 16-17)</div>
+                    <div class="topics">
+                        <div class="topic-item">🔹 Capstone Project</div>
+                        <div class="topic-item">🔹 Research methods</div>
+                        <div class="topic-item">🔹 Data analysis skills</div>
+                        <div class="topic-item">🔹 Project documentation</div>
+                    </div>
+                </div>
+                
+                <div class="grade-column">
+                    <div class="age-range">(Age 17-18)</div>
+                    <div class="topics">
+                        <div class="topic-item">🔹 Startup Pitch</div>
+                        <div class="topic-item">🔹 Portfolio presentation</div>
+                        <div class="topic-item">🔹 Project Defence</div>
+                        <div class="topic-item">🔹 Graduation preparation</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-section">
+                <h3 class="skills-title">Core Skills for Learning</h3>
+                <div class="skills-icons">
+                    <div class="skill-item">
+                        <div class="skill-icon skill-3d">3D</div>
+                        <div class="skill-label">3D Modeling</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon skill-electronics">⚡</div>
+                        <div class="skill-label">Electronics</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon skill-programming">💻</div>
+                        <div class="skill-label">Programming</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon skill-robotics">🤖</div>
+                        <div class="skill-label">Robotics</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon skill-steam">🔬</div>
+                        <div class="skill-label">STEAM</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon skill-drones">🚁</div>
+                        <div class="skill-label">Drones</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon skill-research">🔍</div>
+                        <div class="skill-label">Research</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-icon skill-startup">💼</div>
+                        <div class="skill-label">Startup</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="conclusion">
+            Empowering students with the essential competencies for future success in technology and engineering fields.
+        </div>
+    </div>
+</body>
+</html>
