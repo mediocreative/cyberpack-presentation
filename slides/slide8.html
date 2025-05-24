@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERPACK Qatar Subscription Options</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+        
+        .slide-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .headline {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .option-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4CAF50, #2196F3);
+        }
+        
+        .option-card.premium::before {
+            background: linear-gradient(90deg, #FF9800, #FF5722);
+        }
+        
+        .option-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #e74c3c;
+            margin-bottom: 25px;
+        }
+        
+        .price.addon {
+            color: #ff9800;
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .features-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.95rem;
+        }
+        
+        .checkmark {
+            color: #4CAF50;
+            font-weight: bold;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .plus-icon {
+            color: #FF9800;
+            font-weight: bold;
+            margin-right: 10px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        .updates-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 35px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+        
+        .updates-header {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .updates-header::before {
+            content: '🔄';
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .update-category {
+            margin-bottom: 25px;
+        }
+        
+        .category-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #34495e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-title.software::before {
+            content: '💻';
+            margin-right: 8px;
+        }
+        
+        .category-title.hardware::before {
+            content: '⚙️';
+            margin-right: 8px;
+        }
+        
+        .category-title.warranty::before {
+            content: '🛡️';
+            margin-right: 8px;
+        }
+        
+        .category-title.innovation::before {
+            content: '💡';
+            margin-right: 8px;
+        }
+        
+        .category-content {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 8px;
+            padding-left: 20px;
+        }
+        
+        .highlight {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .coming-soon {
+            background: linear-gradient(90deg, #ffeaa7, #fdcb6e);
+            color: #d63031;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .headline {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .slide-container {
+                padding: 20px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <div class="header">
+            <h1 class="headline">Offer for Qatar: Tailored Subscription Options</h1>
+            <p class="subtitle">Flexible Solutions to Meet Your Needs: Choose from tailored subscription options for comprehensive STEAM education in curriculum or extracurricular settings.</p>
+        </div>
+        
+        <div class="options-grid">
+            <div class="option-card">
+                <h3 class="option-title">Option 1: STEAM Subject Subscription</h3>
+                <div class="price">$1,000 USD<br><span style="font-size: 0.6em; color: #7f8c8d;">per month</span></div>
+                <ul class="features-list">
+                    <li><span class="checkmark">✅</span> 10 CYBERPACK Classroom Kits</li>
+                    <li><span class="checkmark">✅</span> Full STEAM Curriculum (Ages 10–18)</li>
+                    <li><span class="checkmark">✅</span> Interactive Mobile App with AI Assistant</li>
+                    <li><span class="checkmark">✅</span> Teacher Web Platform with grading & reports</li>
+                    <li><span class="checkmark">✅</span> Hands-on learning across classrooms</li>
+                </ul>
+            </div>
+            
+            <div class="option-card">
+                <h3 class="option-title">Option 2: STEAM Club Subscription</h3>
+                <div class="price">$500 USD<br><span style="font-size: 0.6em; color: #7f8c8d;">per month</span></div>
+                <ul class="features-list">
+                    <li><span class="checkmark">✅</span> 1 CYBERPACK Advanced Kit</li>
+                    <li><span class="checkmark">✅</span> STEAM Club Programs (Ages 10–18)</li>
+                    <li><span class="checkmark">✅</span> Interactive Mobile App with AI Assistant</li>
+                    <li><span class="checkmark">✅</span> Teacher Web Platform (adapted for CCA)</li>
+                    <li><span class="checkmark">✅</span> 32 projects with printable parts</li>
+                </ul>
+            </div>
+            
+            <div class="option-card premium">
+                <h3 class="option-title">Enhance Your Experience with Premium Functions</h3>
+                <div class="price addon">Price TBD<br><span style="font-size: 0.6em; color: #7f8c8d;">(Add-on option)</span></div>
+                <ul class="features-list">
+                    <li><span class="plus-icon">➕</span> Extended Analytics & Insights <span class="coming-soon">Coming Soon</span></li>
+                    <li><span class="plus-icon">➕</span> Teacher Certification Program <span class="coming-soon">Coming Soon</span></li>
+                    <li><span class="plus-icon">➕</span> 1-on-1 Training Sessions <span class="coming-soon">Coming Soon</span></li>
+                    <li><span class="plus-icon">➕</span> 2 Additional CYBERPACK Kits</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="updates-section">
+            <h2 class="updates-header">Annual Updates, Warranty & Continued Value</h2>
+            
+            <div class="update-category">
+                <h3 class="category-title software">Software & Curriculum Updates:</h3>
+                <p class="category-content">Ongoing access to latest software updates, curriculum enhancements, and new project releases.</p>
+            </div>
+            
+            <div class="update-category">
+                <h3 class="category-title hardware">Hardware & Kit Evolution:</h3>
+                <p class="category-content">Option to refresh physical kits with latest components upon annual renewal. Supplementary fees for major upgrades discussed transparently.</p>
+            </div>
+            
+            <div class="update-category">
+                <h3 class="category-title warranty">Product Warranty:</h3>
+                <p class="category-content">All hardware components include <span class="highlight">1-Year</span> manufacturer's warranty. Extended options available.</p>
+            </div>
+            
+            <div class="update-category">
+                <h3 class="category-title innovation">Commitment to Innovation:</h3>
+                <p class="category-content">Subscription revenue supports ongoing R&D to keep CYBERPACK at the forefront of STEAM education.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

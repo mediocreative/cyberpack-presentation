@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBERPACK - Building Qatar's Future Innovators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .main-headline {
+            font-size: 2.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.1;
+            max-width: 1200px;
+        }
+
+        .key-message {
+            font-size: 1.2rem;
+            line-height: 1.4;
+            margin-bottom: 35px;
+            max-width: 900px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .cta-section {
+            margin-bottom: 40px;
+        }
+
+        .cta-title {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+        }
+
+        .cta-button {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            min-width: 200px;
+            justify-content: center;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:active {
+            transform: translateY(-1px);
+        }
+
+        .button-icon {
+            font-size: 1.3rem;
+        }
+
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px; /* Adjusted padding slightly for an image */
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex; /* To help center the image */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-image { /* New style for the logo image */
+            max-height: 50px; /* Adjust as needed */
+            width: auto;      /* Maintain aspect ratio */
+            display: block;
+        }
+
+        .contact-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-item {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .qr-code { /* Styles for the QR code image */
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover; /* Ensures the image covers the area, maintaining aspect ratio */
+        }
+
+        .thank-you {
+            margin-top: 20px;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .arabic-text {
+            font-size: 1.4rem;
+            margin-left: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-headline {
+                font-size: 2.8rem;
+            }
+            .key-message {
+                font-size: 1.2rem;
+            }
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide-container {
+                padding: 20px;
+            }
+            .main-headline {
+                font-size: 2.2rem;
+            }
+            .key-message {
+                font-size: 1.1rem;
+            }
+            .cta-button {
+                min-width: 280px;
+                padding: 16px 25px;
+            }
+            .logo-image {
+                max-height: 40px; /* Adjust for smaller screens if needed */
+            }
+        }
+
+        /* Animation effects */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .main-headline {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .key-message {
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .cta-section {
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .contact-section {
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-container">
+        <h1 class="main-headline">
+            LET'S BUILD QATAR'S FUTURE INNOVATORS TOGETHER
+        </h1>
+        
+        <p class="key-message">
+            CYBERPACK is more than a solution; it's a partnership dedicated to cultivating Qatar's most valuable resource – its young innovators and future leaders. We are committed to providing cutting-edge tools and comprehensive support to make this vision a reality.
+        </p>
+        
+        <div class="cta-section">
+            <h2 class="cta-title">TAKE THE NEXT STEP</h2>
+            <div class="cta-buttons">
+                <a href="#" class="cta-button" onclick="handleCTA('demo')">
+                    <span class="button-icon">💻</span>
+                    Schedule a Meeting
+                </a>
+                <a href="#" class="cta-button" onclick="handleCTA('pilot')">
+                    <span class="button-icon">🚀</span>
+                    Discuss Pilot Program Opportunities
+                </a>
+                <a href="#" class="cta-button" onclick="handleCTA('info')">
+                    <span class="button-icon">📄</span>
+                    Request More Information
+                </a>
+            </div>
+        </div>
+        
+        <div class="contact-section">
+            <div class="logo-container">
+                <!-- 
+                  IMPORTANT: Replace "PATH_TO_YOUR_CYBERPACK_BOX_IMAGE.png" 
+                  with the actual path to your image file.
+                  For example: "images/cyberpack_box_logo.png" or a full URL.
+                -->
+                <img src="screenshots/cyberpack_box.png" alt="CYBERPACK Box" class="logo-image">
+            </div>
+            
+            <div class="contact-info">
+                <div class="contact-item">🌐 cyberpack.kz</div>
+                <div class="contact-item">📧 info@cyberpack.kz</div>
+                <div class="contact-item">📱 +7 775 532 02 78</div>
+                <img src="screenshots/instagram_qr.png" alt="CYBERPACK QR Code" class="qr-code">
+            </div>
+            
+            <div class="thank-you">
+                Thank You <span class="arabic-text">شكراً</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function handleCTA(action) {
+            const messages = {
+                demo: "Scheduling a personalized demo...",
+                pilot: "Connecting you to discuss pilot program opportunities...",
+                info: "Preparing information package..."
+            };
+            
+            // Create a temporary notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(255, 255, 255, 0.95);
+                color: #333;
+                padding: 20px 40px;
+                border-radius: 15px;
+                font-size: 1.2rem;
+                font-weight: 600;
+                z-index: 1000;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+                backdrop-filter: blur(10px);
+            `;
+            notification.textContent = messages[action];
+            document.body.appendChild(notification);
+            
+            // Remove notification after 2 seconds
+            setTimeout(() => {
+                if (document.body.contains(notification)) {
+                    document.body.removeChild(notification);
+                }
+            }, 2000);
+        }
+
+        // Add some interactive sparkle effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.slide-container');
+            
+            // Create floating particles
+            const particleInterval = setInterval(() => {
+                if (!document.hidden && Math.random() > 0.7) { // Check if tab is active
+                    const particle = document.createElement('div');
+                    particle.style.cssText = `
+                        position: absolute;
+                        width: 4px;
+                        height: 4px;
+                        background: rgba(255, 255, 255, 0.6);
+                        border-radius: 50%;
+                        pointer-events: none;
+                        left: ${Math.random() * 100}%;
+                        top: ${Math.random() * 100}%;
+                        animation: float 3s ease-out forwards;
+                    `;
+                    if (container) { // Ensure container exists
+                        container.appendChild(particle);
+                    }
+                    
+                    setTimeout(() => {
+                        if (particle.parentNode) {
+                            particle.parentNode.removeChild(particle);
+                        }
+                    }, 3000);
+                }
+            }, 500);
+
+            // Optional: Clear interval if page is hidden to save resources
+            document.addEventListener("visibilitychange", function() {
+              if (document.hidden) {
+                // clearInterval(particleInterval); // You might not want to clear it, just stop creating
+              } else {
+                // Restart or ensure it's running if you cleared it
+              }
+            });
+        });
+        
+        // Add CSS for particle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    opacity: 0;
+                    transform: translateY(0) scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    transform: translateY(-50px) scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: translateY(-100px) scale(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
